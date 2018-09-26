@@ -1,0 +1,132 @@
+apply plugin: 'com.android.application'
+apply from: '../config/quality/quality.gradle'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'realm-android'
+
+android {
+    compileSdkVersion 28
+    buildToolsVersion '28.0.2'
+    defaultConfig {
+        applicationId "com.test.sample"
+        minSdkVersion 21
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        vectorDrawables.useSupportLibrary = true
+
+        // Enabling multidex support.
+        multiDexEnabled true
+        buildConfigField "String", "API_ENDPOINT", api_staging_endpoint
+
+    }
+
+    buildTypes {
+
+        debug {
+            debuggable true
+            applicationIdSuffix ".debug"
+        }
+
+        staging {
+            minifyEnabled true
+            applicationIdSuffix ".staging"
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+
+        release {
+            applicationIdSuffix ".release"
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    androidExtensions {
+        experimental = true
+    }
+}
+
+ext {
+    // External libraries
+    DAGGER_VERSION = '2.14.1'
+    ANDROID_SUPPORT_VERSION = '28.0.0-beta01'
+    COLLAPSING_TOOLBAR_LAYOUT_SUBTITLES_VERSION = '27.1.0'
+    TIMBER_VERSION = '4.7.0'
+    OKHTTP3_VERSION = '3.5.0'
+    RETROFIT_VERSION = '2.1.0'
+    GLIDE_VERSION = '4.7.1'
+    KHRONOS_VERSION = '0.9.0'
+    ANDROIDSVG_VERSION = '1.2.1'
+    MULTIDEX_VERSION = '1.0.3'
+    RX_JAVA_VERSION = '2.1.9'
+    RX_ANDROID_VERSION = '2.0.2'
+    ADAPTER_RX_JAVA = '2.3.0'
+    ANDROID_CORE_KTX = "0.3"
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    // External libraries
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
+    implementation "io.reactivex.rxjava2:rxandroid:$RX_ANDROID_VERSION"
+    implementation "io.reactivex.rxjava2:rxjava:$RX_JAVA_VERSION"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$ADAPTER_RX_JAVA"
+
+    //noinspection GradleCompatible
+    implementation "com.android.support:appcompat-v7:$ANDROID_SUPPORT_VERSION"
+    implementation "com.android.support:cardview-v7:$ANDROID_SUPPORT_VERSION"
+    implementation "com.android.support:design:$ANDROID_SUPPORT_VERSION"
+    implementation "com.hendraanggrian:collapsingtoolbarlayout-subtitle:$COLLAPSING_TOOLBAR_LAYOUT_SUBTITLES_VERSION"
+    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
+    implementation('com.crashlytics.sdk.android:crashlytics:2.6.8@aar') {
+        transitive = true
+    }
+
+    implementation "com.google.dagger:dagger:$DAGGER_VERSION"
+    implementation "com.google.dagger:dagger-android-support:$DAGGER_VERSION"
+    kapt "com.google.dagger:dagger-compiler:$DAGGER_VERSION"
+    implementation "com.jakewharton.timber:timber:$TIMBER_VERSION"
+    implementation "com.squareup.retrofit2:converter-moshi:$RETROFIT_VERSION"
+    implementation "com.squareup.retrofit2:adapter-rxjava:$RETROFIT_VERSION"
+    implementation "com.squareup.okhttp3:okhttp:$OKHTTP3_VERSION"
+    implementation "com.squareup.okhttp3:logging-interceptor:$OKHTTP3_VERSION"
+    implementation 'com.nshmura:recyclertablayout:1.1.0'
+    implementation 'com.appsee:appsee-android:2.4.1'
+    implementation "com.github.bumptech.glide:glide:$GLIDE_VERSION"
+    kapt "com.github.bumptech.glide:compiler:$GLIDE_VERSION"
+    implementation "com.github.hotchemi:khronos:$KHRONOS_VERSION"
+    implementation "com.caverock:androidsvg:$ANDROIDSVG_VERSION"
+    implementation 'com.github.markomilos:paginate:0.5.1'
+    implementation 'us.feras.mdv:markdownview:1.1.0'
+    implementation 'net.opacapp:multiline-collapsingtoolbar:1.5.0'
+    implementation "com.android.support:multidex:$MULTIDEX_VERSION"
+    implementation 'com.google.android:flexbox:0.3.1'
+    implementation 'com.segment.analytics.android:analytics:4.3.1'
+    implementation 'com.annimon:stream:1.2.0'
+    implementation 'com.stripe:stripe-android:7.1.0'
+    implementation 'com.pawegio.kandroid:kandroid:0.8.7@aar'
+    implementation 'io.prismic:android-kit:1.2.0'
+    implementation 'com.couchbase.lite:couchbase-lite-android:1.4.1'
+    implementation 'com.github.chrisbanes:PhotoView:2.1.2'
+    implementation 'com.github.pedrovgs:renderers:3.4.0'
+    implementation 'io.intercom.android:intercom-sdk-base:5.0.0'
+    implementation "androidx.core:core-ktx:$ANDROID_CORE_KTX"
+    implementation 'com.tbuonomo.andrui:viewpagerdotsindicator:2.1.1'
+
+    // Unit tests
+    testImplementation 'junit:junit:4.12'
+    testImplementation 'com.nhaarman.mockitokotlin2:mockito-kotlin:2.0.0-RC1'
+
+    // Ui tests
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+}

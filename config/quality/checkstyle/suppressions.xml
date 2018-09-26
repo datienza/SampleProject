@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE suppressions PUBLIC
+    "-//Puppy Crawl//DTD Suppressions 1.1//EN"
+    "suppressions_1_1.dtd">
+
+<suppressions>
+    <!-- Suppress R.java from CheckStyle - important for the pre-build check -->
+    <suppress checks="." files="R.java" />
+
+    <!-- illegal words are part of Javadoc -->
+    <suppress checks="TodoComment" files=".*TodoCommentCheck\.java"/>
+
+    <!-- model objects -->
+    <suppress checks="[a-zA-Z0-9]*"
+        files="[/\\]src[/\\]main[/\\]java[/\\]uk[/\\]co[/\\]farmdrop[/\\]driver[/\\]data[/\\]model[/\\]" />
+
+    <!-- model container objects -->
+    <suppress checks="[a-zA-Z0-9]*"
+        files="[/\\]src[/\\]main[/\\]java[/\\]uk[/\\]co[/\\]farmdrop[/\\]driver[/\\]data[/\\]container[/\\]" />
+
+</suppressions>

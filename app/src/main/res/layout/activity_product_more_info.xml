@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:contentDescription="@string/content_description_activity_product_more_info"
+    android:orientation="vertical"
+    tools:context="com.farmdrop.customer.ui.products.ProductsActivity">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/white"
+        android:elevation="@dimen/toolbar_elevation_small" />
+
+    <TextView
+        android:id="@+id/productMoreInfoText"
+        style="@style/Content1.Black"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/grid_spacing_quadruple"
+        android:layout_marginStart="@dimen/grid_spacing_double"
+        android:layout_marginEnd="@dimen/grid_spacing_double"
+        android:layout_marginBottom="@dimen/grid_spacing_quadruple"
+        android:visibility="gone"
+        tools:visibility="visible" />
+
+    <TextView
+        android:id="@+id/productShelflifeTitleText"
+        style="@style/Content1.Black.Bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_screen_edge"
+        android:text="@string/shelf_life_title"
+        android:visibility="gone"
+        tools:visibility="visible" />
+
+    <TextView
+        android:id="@+id/productShelflifeText"
+        style="@style/Content1.Black"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_screen_edge"
+        android:visibility="gone"
+        tools:visibility="visible" />
+
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/nutritionRecyclerView"
+        app:layoutManager="android.support.v7.widget.LinearLayoutManager"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="@dimen/margin_screen_edge"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:visibility="gone"
+        tools:visibility="visible" />
+
+</LinearLayout>
+
